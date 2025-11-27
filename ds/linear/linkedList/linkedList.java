@@ -22,6 +22,20 @@ public class linkedList {
         this.size++;
     }
 
+    public linkedNode mergeList(linkedNode list1, linkedNode list2){
+        if(list1 == null) return list2;
+        if(list2 == null) return list1;
+
+        if(list1.getData() < list2.getData()){
+            list1.setNext(mergeList(list1.getNext(), list2));
+            return list1;
+        } else {
+            list2.setNext(mergeList(list1, list2.getNext()));
+            return list2;
+        }
+
+    }
+
     public void printList(){
         linkedNode currentNode = this.head;
         while(currentNode != null){
